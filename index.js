@@ -68,19 +68,15 @@ function handleEvent(event) {
 		                "title": welMessage,
 		                "text": introMessage,
 		                "actions": [
-		                			{
-										"type":"uri",
-										"label": "View repository",
-										"uri": "https://github.com/fossasia/susi_server"
-									},{
-										"type":"message",
-										"label":"Start Chatting",
-										"text":"Start Chatting"
-									},{
-										"type":"message",
-										"label":"How to contribute?",
-										"text":"Contribution"
-									}
+                			{
+								"type":"uri",
+								"label": "View repository",
+								"uri": "https://github.com/fossasia/susi_server"
+							},{
+								"type":"message",
+								"label":"Start Chatting",
+								"text":"Start Chatting"
+							}
 		                ]
 		            }
 		        };
