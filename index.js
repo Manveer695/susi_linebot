@@ -95,7 +95,6 @@ function handleEvent(event) {
         request(options1, function(error2, response2, body2) {
 	        if (error2) throw new Error(error2);
 	        
-	        type = (JSON.parse(body2)).answers[0].actions;
 	        var introMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
 	        console.log(introMessage);
 	        i = i+1;
