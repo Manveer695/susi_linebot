@@ -42,28 +42,47 @@ function handleEvent(event) {
         }
     };
 
-    if (event.message.text == "start" || event.message.text == "Start" || event.message.text == "START") {
-        const answer = {
-            "type": "template",
-            "altText": "this is a template",
-            "template": {
-                "type": "buttons",
-                "title": 'Welcome to SUSI AI',
-                "text": 'I am built by open source community Fossasia.',
-                "actions": [{
-                        "type": "uri",
-                        "label": "See Github",
-                        "uri": 'https://github.com/fossasia/susi_server'
-                    },
-                    {
-                        "type": "message",
-                        "label": "Talk to SUSI",
-                        "text": 'Hi'
-                    }
-                ]
-            }
-        };
-        return client.replyMessage(event.replyToken, answer);
+    if (event.message.text.toLowerCase() === "get started") {
+    	options1.qs.q = "Welcome";
+    	request(options1, function(error1, response1, body1) {
+            if (error1) throw new Error(error1);
+            
+            var type = (JSON.parse(body1)).answers[0].actions;
+            var welMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
+            
+            options1.qs.q = "Get started";
+            request(options1, function(error2, response2, body2) {
+		        if (error2) throw new Error(error2);
+		        
+		        type = (JSON.parse(body2)).answers[0].actions;
+		        var introMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
+		        const answer = {
+		            "type": "template",
+		            "altText": "template",
+		            "template": {
+		                "type": "buttons",
+		                "title": welMessage,
+		                "text": introMessage,
+		                "actions": [
+		                			{
+										"type":"uri",
+										"label": "View repository",
+										"uri": "https://github.com/fossasia/susi_server"
+									},{
+										"type":"message",
+										"label":"Start Chatting",
+										"text":"Start Chatting"
+									},{
+										"type":"message",
+										"label":"How to contribute?",
+										"text":"Contribution"
+									}
+		                ]
+		            }
+		        };
+		        return client.replyMessage(event.replyToken, answer);
+		    });
+		});
     } else {
         request(options1, function(error1, response1, body1) {
             if (error1) throw new Error(error1);
