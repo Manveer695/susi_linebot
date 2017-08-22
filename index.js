@@ -49,6 +49,7 @@ function handleEvent(event) {
             
             var type = (JSON.parse(body1)).answers[0].actions;
             var welMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
+            var answer;
             
             options1.qs.q = "Get started";
             request(options1, function(error2, response2, body2) {
@@ -56,7 +57,7 @@ function handleEvent(event) {
 		        
 		        type = (JSON.parse(body2)).answers[0].actions;
 		        var introMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
-		        const answer = {
+		        answer = {
 		            "type": "template",
 		            "altText": "template",
 		            "template": {
