@@ -81,7 +81,7 @@ function handleEvent(event) {
     	request(options1, function(error1, response1, body1) {
             if (error1) throw new Error(error1);
             
-            console.log(JSON.parse(body1));
+            console.log(body1);
             var welMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
             console.log(welMessage);
             i = i+1;
