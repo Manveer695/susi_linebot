@@ -67,7 +67,7 @@ function handleEvent(event) {
     
     var options1 = {
         method: 'GET',
-        url: 'http://api.asksusi.com/susi/chat.json',
+        url: 'http://api.susi.ai/susi/chat.json',
         qs: {
             timezoneOffset: '-330',
             q: event.message.text
