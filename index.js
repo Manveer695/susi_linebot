@@ -31,39 +31,6 @@ process.on('unhandledRejection', (reason, p) => {
   // application specific logging, throwing an error, or other logic here
 });
 
-function commonFunc(event, answer, i, message){
-	answer[i-1] = message;
-	if(i == 2){
-		var Qanswer = {
-	            "type": "template",
-	            "altText": "template",
-	            "template": {
-	                "type": "buttons",
-	                "title": ((answer[0].indexOf("to")!==-1)?answer[0]:answer[1]),
-	                "text": ((answer[0].indexOf("to")!==-1)?answer[1]:answer[0]),
-	                "actions": [
-	                			{
-									"type":"uri",
-									"label": "View repository",
-									"uri": "https://github.com/fossasia/susi_server"
-								},{
-									"type":"message",
-									"label":"Start Chatting",
-									"text":"Start Chatting"
-								},{
-									"type":"message",
-									"label":"How to contribute?",
-									"text":"Contribution"
-								}
-	                ]
-	            }
-	        };
-	    console.log(Qanswer);    
-		return client.replyMessage(event.replyToken, Qanswer);
-	}
-	return null;
-}
-
 // event handler
 function handleEvent(event) {
     if (event.type !== 'message' || event.message.type !== 'text') {
@@ -82,33 +49,44 @@ function handleEvent(event) {
 
     if (event.message.text.toLowerCase() === "get started") {
     	options1.qs.q = "Welcome";
-    	var answer = [];
-    	var i = 0;
     	request(options1, function(error1, response1, body1) {
             if (error1) throw new Error(error1);
             
-            console.log(body1);
             var welMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
-            
-            i = i+1;
-            var val = commonFunc(event, answer, i, welMessage);
-            if(val !== null){
-            	return val;
-            }
-        });
         
-        options1.qs.q = "Get started";
-        request(options1, function(error2, response2, body2) {
-	        if (error2) throw new Error(error2);
-	        
-	        console.log(body2);
-	        var introMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
-	        
-	        i = i+1;
-            var val = commonFunc(event, answer, i, introMessage);
-            if(val !== null){
-            	return val;
-            }
+	        options1.qs.q = "Get started";
+	        request(options1, function(error2, response2, body2) {
+		        if (error2) throw new Error(error2);
+		        
+		        console.log(body2);
+		        var introMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
+		        var Qanswer = {
+		            "type": "template",
+		            "altText": "template",
+		            "template": {
+		                "type": "buttons",
+		                "title": welMessage,
+		                "text": introMessage,
+		                "actions": [
+		                			{
+										"type":"uri",
+										"label": "View repository",
+										"uri": "https://github.com/fossasia/susi_server"
+									},{
+										"type":"message",
+										"label":"Start Chatting",
+										"text":"Start Chatting"
+									},{
+										"type":"message",
+										"label":"How to contribute?",
+										"text":"Contribution"
+									}
+		                ]
+		            }
+		        };
+		    	console.log(Qanswer);    
+				return client.replyMessage(event.replyToken, Qanswer);
+			});
 		});
     } else {
         request(options1, function(error1, response1, body1) {
