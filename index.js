@@ -58,6 +58,7 @@ function commonFunc(event, answer, i, message){
 	                ]
 	            }
 	        };
+	    console.log(Qanswer);    
 		return client.replyMessage(event.replyToken, Qanswer);
 	}
 	return null;
@@ -88,7 +89,7 @@ function handleEvent(event) {
             
             console.log(body1);
             var welMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
-            console.log(welMessage);
+            
             i = i+1;
             var val = commonFunc(event, answer, i, welMessage);
             if(val !== null){
@@ -101,7 +102,7 @@ function handleEvent(event) {
 	        if (error2) throw new Error(error2);
 	        
 	        var introMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
-	        console.log(introMessage);
+	        
 	        i = i+1;
             var val = commonFunc(event, answer, i, introMessage);
             if(val !== null){
