@@ -26,10 +26,10 @@ app.post('/', line.middleware(config), (req, res) => {
         .then((result) => res.json(result));
 });
 
-function commonFunc(answer, i, message){
+function commonFunc(event, answer, i, message){
 	answer[i-1] = message;
 	if(i == 2){
-		answer = {
+		var Qanswer = {
 	            "type": "template",
 	            "altText": "template",
 	            "template": {
@@ -53,7 +53,7 @@ function commonFunc(answer, i, message){
 	                ]
 	            }
 	        };
-		return client.replyMessage(event.replyToken, answer);
+		return client.replyMessage(event.replyToken, Qanswer);
 	}
 	return null;
 }
@@ -83,8 +83,9 @@ function handleEvent(event) {
             
             var type = (JSON.parse(body1)).answers[0].actions;
             var welMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
+            console.log(welMessage);
             i = i+1;
-            var val = commonFunc(answer, i, welMessage);
+            var val = commonFunc(event, answer, i, welMessage);
             if(val !== null){
             	return val;
             }
@@ -96,8 +97,9 @@ function handleEvent(event) {
 	        
 	        type = (JSON.parse(body2)).answers[0].actions;
 	        var introMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
+	        console.log(introMessage);
 	        i = i+1;
-            var val = commonFunc(answer, i, introMessage);
+            var val = commonFunc(event, answer, i, introMessage);
             if(val !== null){
             	return val;
             }
