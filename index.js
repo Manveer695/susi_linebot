@@ -101,6 +101,7 @@ function handleEvent(event) {
         request(options1, function(error2, response2, body2) {
 	        if (error2) throw new Error(error2);
 	        
+	        console.log(body2);
 	        var introMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
 	        
 	        i = i+1;
@@ -129,7 +130,6 @@ function handleEvent(event) {
                 var address = JSON.parse(body1).answers[0].data[0].place
 
                 const answer = [{
-
                         type: 'text',
                         text: ans
                     },
