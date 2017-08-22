@@ -26,6 +26,11 @@ app.post('/', line.middleware(config), (req, res) => {
         .then((result) => res.json(result));
 });
 
+process.on('unhandledRejection', (reason, p) => {
+  console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+  // application specific logging, throwing an error, or other logic here
+});
+
 function commonFunc(event, answer, i, message){
 	answer[i-1] = message;
 	if(i == 2){
