@@ -42,29 +42,90 @@ function handleEvent(event) {
         }
     };
 
-    if (event.message.text == "start" || event.message.text == "Start" || event.message.text == "START") {
-        const answer = {
-            "type": "template",
-            "altText": "this is a template",
-            "template": {
-                "type": "buttons",
-                "title": 'Welcome to SUSI AI',
-                "text": 'I am built by open source community Fossasia.',
-                "actions": [{
-                        "type": "uri",
-                        "label": "See Github",
-                        "uri": 'https://github.com/fossasia/susi_server'
-                    },
-                    {
-                        "type": "message",
-                        "label": "Talk to SUSI",
-                        "text": 'Hi'
-                    }
-                ]
-            }
-        };
-        return client.replyMessage(event.replyToken, answer);
-    } 
+    if (event.message.text.toLowerCase() === "get started") {
+		request(options1, function(error1, response1, body1) {
+	        if (error1) throw new Error(error1);
+		    
+	        const introMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
+	        const sampleQ = {
+	            "type": "template",
+	            "altText": "template",
+	            "template": {
+	                "type": "buttons",
+	                "title": "Welcome to SUSI.AI!",
+	                "text": introMessage,
+	                "actions": [
+	                	{
+	                        "type": "uri",
+	                        "label": "View Repository",
+	                        "uri": "https://github.com/fossasia/susi_server"
+	                    },
+	                    {
+	                        "type": "message",
+	                        "label": "Start Chatting",
+	                        "text": "Start Chatting"
+	                    },
+	                    {
+	                        "type": "message",
+	                        "label": "How to contribute?",
+	                        "text": "Contribution"
+	                    }
+	                ]
+	            }
+	        };
+	    	return client.replyMessage(event.replyToken, sampleQ);
+		});
+	}
+	else if (event.message.text.toLowerCase() === "contribution") {
+		request(options1, function(error1, response1, body1) {
+	        if (error1) throw new Error(error1);
+		        
+	        console.log(body1);
+	        var contriMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
+	        var sampleQ = {
+	            "type": "template",
+	            "altText": "template",
+	            "template": {
+	                "type": "buttons",
+	                "title": "Contibute",
+	                "text": contriMessage,
+	                "actions": [
+	                	{
+	                        "type": "uri",
+	                        "label": "View Repository",
+	                        "uri": "https://github.com/fossasia/susi_server"
+	                    }
+	                ]
+	            }
+	        };
+
+	        options1.qs.q = "Gitter channel";
+	        request(options1, function(error2, response2, body2) {
+		        if (error2) throw new Error(error2);
+			    
+		        var channelMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
+		        var channelQ = {
+		            "type": "template",
+		            "altText": "template",
+		            "template": {
+		                "type": "buttons",
+		                "title": "Gitter channel",
+		                "text": channelMessage,
+		                "actions": [
+		                	{
+		                        "type": "uri",
+		                        "label": "View Repository",
+		                        "uri": "https://github.com/fossasia/susi_server"
+		                    }
+		                ]
+		            }
+		        };
+
+		        var answers = [sampleQ,channelQ];
+		    	return client.replyMessage(event.replyToken, answers);
+		    });
+		});
+	}
     else if(event.message.text.toLowerCase() === "start chatting"){
     	request(options1, function(error1, response1, body1) {
     		if (error1) throw new Error(error1);
