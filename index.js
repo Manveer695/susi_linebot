@@ -65,8 +65,8 @@ function handleEvent(event) {
 		            "altText": "template",
 		            "template": {
 		                "type": "buttons",
-		                "title": "Sample queries",
-		                "text": "You can try the following:",
+		                "title": welMessage,
+		                "text": introMessage,
 		                "actions": [
 		                	{
 		                        "type": "message",
