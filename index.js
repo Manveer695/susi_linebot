@@ -70,9 +70,9 @@ function handleEvent(event) {
 		                "text": "introMessage",
 		                "actions": [
 		                	{
-		                        "type": "message",
+		                        "type": "uri",
 		                        "label": "What is FOSSASIA?",
-		                        "text": "What is FOSSASIA?"
+		                        "uri": "https://www.github.com"
 		                    },
 		                    {
 		                        "type": "message",
