@@ -60,28 +60,33 @@ function handleEvent(event) {
 		        
 		        console.log(body2);
 		        var introMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
-		        var Qanswer = {
+		        const sampleQ = {
 		            "type": "template",
 		            "altText": "template",
 		            "template": {
 		                "type": "buttons",
-		                "title": welMessage,
-		                "text": introMessage,
+		                "title": "Sample queries",
+		                "text": "You can try the following:",
 		                "actions": [
-                			{
-								"type":"uri",
-								"label": "View repository",
-								"uri": "https://github.com/fossasia/susi_server"
-							},{
-								"type":"message",
-								"label":"Start Chatting",
-								"text":"Start Chatting"
-							}
+		                	{
+		                        "type": "message",
+		                        "label": "What is FOSSASIA?",
+		                        "text": "What is FOSSASIA?"
+		                    },
+		                    {
+		                        "type": "message",
+		                        "label": "Who is Einstein?",
+		                        "text": "Who is Einstein?"
+		                    },
+		                    {
+		                        "type": "message",
+		                        "label": "Borders with INDIA",
+		                        "text": "Borders with INDIA"
+		                    }
 		                ]
 		            }
 		        };
-		    	console.log(Qanswer);    
-				return client.replyMessage(event.replyToken, Qanswer);
+	        	return client.replyMessage(event.replyToken, sampleQ);
 			});
 		});
     } else {
