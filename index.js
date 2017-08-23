@@ -52,22 +52,22 @@ function handleEvent(event) {
     	request(options1, function(error1, response1, body1) {
             if (error1) throw new Error(error1);
             
-            var welMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
+            const welMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
         
 	        options1.qs.q = "Get started";
 	        request(options1, function(error2, response2, body2) {
 		        if (error2) throw new Error(error2);
 		        
 		        console.log(body2);
-		        var introMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
+		        const introMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
 		        console.log(welMessage+" "+introMessage);
 		        var sampleQ = {
 		            "type": "template",
 		            "altText": "template",
 		            "template": {
 		                "type": "buttons",
-		                "title": welMessage.toString(),
-		                "text": introMessage.toString(),
+		                "title": welMessage,
+		                "text": introMessage,
 		                "actions": [
 		                	{
 		                        "type": "uri",
