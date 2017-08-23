@@ -61,7 +61,7 @@ function handleEvent(event) {
 		        console.log(body2);
 		        const introMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
 		        console.log(welMessage+" "+introMessage);
-		        var sampleQ = {
+		        const sampleQ = {
 		            "type": "template",
 		            "altText": "template",
 		            "template": {
@@ -88,6 +88,8 @@ function handleEvent(event) {
 		            }
 		        };
 	        	return client.replyMessage(event.replyToken, sampleQ);
+			}).catch(function(event){
+
 			});
 		});
     } else {
