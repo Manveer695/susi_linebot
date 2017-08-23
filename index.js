@@ -60,6 +60,7 @@ function handleEvent(event) {
 		        
 		        console.log(body2);
 		        var introMessage = (JSON.parse(body2)).answers[0].actions[0].expression;
+		        console.log(welMessage+" "+introMessage);
 		        const sampleQ = {
 		            "type": "template",
 		            "altText": "template",
