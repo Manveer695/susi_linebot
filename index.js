@@ -74,6 +74,8 @@ function handleEvent(event) {
 	            }
 	        };
 	    	return client.replyMessage(event.replyToken, sampleQ);
+		}).catch(function () {
+		     console.log("Promise Rejected");
 		});
 	}
 	else if (event.message.text.toLowerCase() === "contribution") {
