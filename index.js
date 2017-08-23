@@ -88,8 +88,6 @@ function handleEvent(event) {
 		            }
 		        };
 	        	return client.replyMessage(event.replyToken, sampleQ);
-			}).catch(function(event){
-
 			});
 		});
     } else {
