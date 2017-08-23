@@ -71,7 +71,6 @@ function handleEvent(event) {
             
             // answer fetched from susi
             var ans = (JSON.parse(body1)).answers[0].actions[0].expression;
-            client.replyMessage(event.replyToken, ans);
             const sampleQ = {
 	            "type": "template",
 	            "altText": "template",
