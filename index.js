@@ -67,7 +67,7 @@ function handleEvent(event) {
 		            "template": {
 		                "type": "buttons",
 		                "title": "welMessage",
-		                "text": introMessage,
+		                "text": "introMessage",
 		                "actions": [
 		                	{
 		                        "type": "message",
