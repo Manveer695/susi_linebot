@@ -47,10 +47,7 @@ function handleEvent(event) {
 		request(options1)
 		.then(function (response1) {
     		// Request was successful, use the response object at will
-    		console.log(response1);
-    		console.log(JSON.stringify(response1));
-		    var introMessage = "";
-		    //= (JSON.parse(body1)).answers[0].actions[0].expression;
+   		    var introMessage = (JSON.parse(response1)).answers[0].actions[0].expression;
 		    console.log(introMessage);
 	        var sampleQ = {
 	            "type": "template",
