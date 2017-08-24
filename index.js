@@ -77,7 +77,7 @@ function handleEvent(event) {
 	    	return client.replyMessage(event.replyToken, sampleQ);
   		})
   		.catch(function (err1) {
-    		// Something bad happened, handle the error
+    		console.log(err1);// Something bad happened, handle the error
 		});
 	}
 	else if (event.message.text.toLowerCase() === "contribution") {
