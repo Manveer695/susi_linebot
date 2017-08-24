@@ -2,7 +2,7 @@
 
 const line = require('@line/bot-sdk');
 const express = require('express');
-var request = require('request');
+var request = require('request-promise');
 var http = require('http');
 
 // create LINE SDK config from env variables
@@ -43,8 +43,11 @@ function handleEvent(event) {
     };
 
     if (event.message.text.toLowerCase() === "get started") {
-		request(options1, function(error1, response1, body1) {
-	        var introMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
+
+		request(options1)
+		.then(function (response1) {
+    		// Request was successful, use the response object at will
+		    var introMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
 	        var sampleQ = {
 	            "type": "template",
 	            "altText": "template",
@@ -72,7 +75,10 @@ function handleEvent(event) {
 	            }
 	        };
 	    	return client.replyMessage(event.replyToken, sampleQ);
-		}).catch(function(e){});
+  		})
+  		.catch(function (err1) {
+    		// Something bad happened, handle the error
+		});
 	}
 	else if (event.message.text.toLowerCase() === "contribution") {
 		request(options1, function(error1, response1, body1) {
