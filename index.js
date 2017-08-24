@@ -72,7 +72,7 @@ function handleEvent(event) {
 	            }
 	        };
 	    	return client.replyMessage(event.replyToken, sampleQ);
-		});
+		}).catch(function(e){});
 	}
 	else if (event.message.text.toLowerCase() === "contribution") {
 		request(options1, function(error1, response1, body1) {
