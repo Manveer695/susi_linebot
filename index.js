@@ -44,9 +44,8 @@ function handleEvent(event) {
 
     if (event.message.text.toLowerCase() === "get started") {
 		request(options1, function(error1, response1, body1) {
-		    try{
-	        const introMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
-	        const sampleQ = {
+	        var introMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
+	        var sampleQ = {
 	            "type": "template",
 	            "altText": "template",
 	            "template": {
@@ -73,11 +72,7 @@ function handleEvent(event) {
 	            }
 	        };
 	    	return client.replyMessage(event.replyToken, sampleQ);
-	    	}
-	    	catch(e){
-
-	    	}
-		})
+		});
 	}
 	else if (event.message.text.toLowerCase() === "contribution") {
 		request(options1, function(error1, response1, body1) {
