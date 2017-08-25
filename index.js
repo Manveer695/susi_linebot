@@ -49,7 +49,7 @@ function handleEvent(event) {
     		// Request was successful, use the response object at will
    		    var introMessage = (JSON.parse(response1)).answers[0].actions[0].expression;
 		    console.log(introMessage);
-	        var sampleQ = [{
+	        var sampleQ = {
 	            "type": "template",
 	            "altText": "template",
 	            "template": {
@@ -74,7 +74,7 @@ function handleEvent(event) {
 	                    }
 	                ]
 	            }
-	        }];
+	        };
 	    	return client.replyMessage(event.replyToken, sampleQ);
   		})
   		.catch(function (err1) {
