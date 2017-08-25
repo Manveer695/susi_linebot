@@ -44,8 +44,7 @@ function handleEvent(event) {
 
     if (event.message.text.toLowerCase() === "get started") {
 
-		request(options1)
-		.then(function (response1) {
+		request(options1, function(error1, response1, body1) {
     		// Request was successful, use the response object at will
    		    var introMessage = (JSON.parse(response1)).answers[0].actions[0].expression;
 		    console.log(introMessage);
@@ -76,10 +75,7 @@ function handleEvent(event) {
 	            }
 	        };
 	    	return client.replyMessage(event.replyToken, sampleQ);
-  		})
-  		.catch(function (err1) {
-    		console.log(err1);// Something bad happened, handle the error
-		});
+  		});
 	}
 	else if (event.message.text.toLowerCase() === "contribution") {
 		request(options1, function(error1, response1, body1) {
