@@ -45,6 +45,7 @@ function handleEvent(event) {
     if (event.message.text.toLowerCase() === "get started") {
 
 		request(options1, function(error1, response1, body1) {
+			if (error1) console.log(error1);
     		// Request was successful, use the response object at will
    		    const introMessage = (JSON.parse(body1)).answers[0].actions[0].expression;
 		    console.log(introMessage);
